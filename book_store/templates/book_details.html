@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %} Show books {% endblock %}
+
+{% block body %}
+
+<h1>Show books</h1>
+
+{% if messages %}
+{% for m in messages %}
+{{m}}
+{% endfor %}
+{% endif %}
+
+<div style="margin:auto;width:60%">
+{% if item %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Book</th>
+        <th scope="col">Author</th>
+        <th scope="col">Category</th>
+        <th scope="col">First Publication</th>
+        <th scope="col">last Publication</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.book_name}}</td>
+        <td>{{item.author}}</td>
+        <td>{{item.category}}</td>
+        <td>{{item.first_pub}}</td>
+        <td>{{item.last_pub}}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'edit_book' pk=item.id %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'delete_book' pk=item.id %}">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% else %}
+<h1>No data to show</h1>
+{% endif %}
+</div>
+{% endblock %}

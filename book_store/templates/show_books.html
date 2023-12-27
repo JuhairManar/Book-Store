@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Show books {% endblock %}
+
+{% block body %}
+
+<h1>Show books</h1>
+
+{% if messages %}
+{% for m in messages %}
+{{m}}
+{% endfor %}
+{% endif %}
+
+<div style="margin:auto;width:60%">
+{% if data %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Book</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in data %}
+      <tr>
+        <td><a href="{% url 'book_details' item.id %}">{{item.id}}</a></td>
+        <td>{{item.book_name}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<h1>No data to show</h1>
+{% endif %}
+</div>
+{% endblock %}
